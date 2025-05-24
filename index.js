@@ -6,7 +6,7 @@ import errorHandler from "./middleware/errorHandler.js";
 dotenv.config();
 
 const app = express();
-app.use(express.json({ limit: "1mb" }));
+app.use(express.json({ limit: "10mb" }));
 
 app.use("/api/image", imageRoutes);
 app.use(errorHandler);
