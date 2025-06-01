@@ -7,7 +7,7 @@ const genAI = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY });
 export async function generateImageFromPrompt(prompt) {
   const response = await genAI.models.generateContent({
     model: "gemini-2.0-flash-preview-image-generation",
-    contents: `Create a 1024x1024 square image. ${prompt}`,
+    contents: `Create a 1:1 aspectRatio image. ${prompt}`,
     config: {
       responseModalities: [Modality.TEXT, Modality.IMAGE],
       imageDetail: "HIGH",
@@ -24,5 +24,5 @@ export async function generateImageFromPrompt(prompt) {
     throw new Error("Image generation failed or no image returned.");
   }
 
-  return imagePart.inlineData.data;
+  return imagePart.inlineData.data; // base64
 }
